@@ -18,7 +18,7 @@ export const Login = () => {
 			const {data, error} = await login(email, password);
 			if (error) {
 				console.log(error)
-				setMessage("Špatný email nebo heslo.")
+				setMessage("Wrong email or password")
 			}
 			if (data.user && data.session) {
 				console.log('prihlaseny', data.user)
@@ -39,7 +39,7 @@ export const Login = () => {
 			<form onSubmit={handleClick}>
 				<input type="text" className='form-control border mb-11 w-75' value={email} onChange={(event) => setEmail(event.target.value)} />
 				<input type="password" className='form-control border mb-11 w-75' value={password} onChange={(event) => setPassword(event.target.value)} />
-				<button type="submit" className="btn btn-secondary">Prihlasit se</button>
+				<button type="submit" className="btn btn-secondary">Login</button>
 			</form>
 			
 		</>

@@ -9,7 +9,7 @@ const About = () => {
 		<>
 			<h2>About</h2>
 
-			<p>Plán umístit sem nějaké informace o SPA.</p>
+			<p>Developed by Jakub Seyček</p>
 
 		</>
 	);

@@ -83,7 +83,7 @@ const Editions = () => {
 
 	return (
 		<section id='editions'>
-			<h3>Edice</h3>
+			<h3>Editions</h3>
 			<form>
 			<label><p className='mb-11'>Choose year:</p></label>
 				<select value={JSON.stringify(dateEdition)} onChange={handleChange} className="form-select border mb-1">

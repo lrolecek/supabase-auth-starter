@@ -19,7 +19,7 @@ export const Register = () => {
 
 		// Check if the email matches the expected pattern
 		if (!emailRegex.test(email)) {
-		  setMessage("Prosím, zadejte platnou emailovou adresu.");
+		  setMessage("Put a correct e-mail address.");
 		  return;
 		}
 	
@@ -27,10 +27,10 @@ export const Register = () => {
 		  const { data, error } = register(email, password);
 	
 		  if (!error && data) {
-			setMessage("Registrace úspěšná, zkontrolujte vás email.");
+			alert("Registration successfull, check your e-mail.");
 		  }
 		} catch (error) {
-		  setMessage("Chyba");
+		  setMessage("Error");
 		}
 
 	}
@@ -38,12 +38,12 @@ export const Register = () => {
 	return (
 		<>
 
-			<h2>Registrace</h2>
+			<h2>Registration</h2>
 			<p>{message}</p>
 			<form onSubmit={handleClick}>
 				<input type="text" className='form-control border mb-11 w-75' value={email} onChange={(event) => setEmail(event.target.value)} />
 				<input type="password" className='form-control border mb-11 w-75' value={password} onChange={(event) => setPassword(event.target.value)} />
-				<button type="submit" className="btn btn-secondary">Registrovat</button>
+				<button type="submit" className="btn btn-secondary">Sing up</button>
 			</form>
 
 			

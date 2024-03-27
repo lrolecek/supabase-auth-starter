@@ -61,7 +61,9 @@ const Home = () => {
 		loadData();
 	},[work, renamed])
 
-	const handleAddDeck = async () => {
+	const handleAddDeck = async (e) => {
+
+		e.preventDefault()
 		
 		const {data, error} = await supabase
 				.from('Decks')
@@ -119,15 +121,16 @@ const Home = () => {
 
 	return (
 		<section id='home' className='h-100'>
-			<h3>Balíčky</h3>
+			<h3>Decks</h3>
 			{/* {user.id} */}
 			
-
-			<div className="input-group mb-1">
-  				<input type="text" className="form-control border" placeholder="Jméno nového balíčku" aria-label="Recipient's username" aria-describedby="button-addon2"
-				value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
-  				<button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleAddDeck}>Vytvořit</button>
-			</div>
+			<form onSubmit={handleAddDeck}>
+				<div className="input-group mb-1">
+  					<input type="text" className="form-control border" placeholder="Name of your new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
+					value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
+  					<button className="btn btn-outline-secondary" type="submit" id="button-addon2">Create</button>
+				</div>
+			</form>
 
 			
 
@@ -144,8 +147,8 @@ const Home = () => {
 					<img src={myDeck} className="deck my-auto" onClick={() => handleItemClick(element)}/>
 					
 					<div className='my-auto ms-1'><h4>{element.name}</h4>
-						<Link to="/deckbuilder"><span onClick={() => handleItemClick(element)}>Upravit</span></Link> |&nbsp;
-						<span className='delete' onClick={() => deleteDeck(element)}>Smazat</span>
+						<Link to="/deckbuilder"><span onClick={() => handleItemClick(element)}>Edit</span></Link> |&nbsp;
+						<span className='delete' onClick={() => deleteDeck(element)}>Delete</span>
 					</div>
 				</div>
 				

@@ -63,9 +63,9 @@ const DeckBuilder = () => {
 		<section id="deckbuilder">	
 			{/* <p>User: ID {user.id}</p> */}
 			<h3>DeckBuilder</h3>
-			<div className="mb-1"><Link to="/">Zpět na výběr balíku</Link></div>
-			<div className="mb-1"><Link to="/editions">Zpět na výběr edice</Link></div>
-			<p>Vybraná edice: <strong>{edition.name}</strong></p>
+			<div className="mb-1"><Link to="/">Back to choose deck</Link></div>
+			<div className="mb-1"><Link to="/editions">Back to select edition</Link></div>
+			<p>Selected edition: <strong>{edition.name}</strong></p>
 
 			<div className="card-section bg-white" style={{height: `${innerHeight - topSpace}px`}}>
 

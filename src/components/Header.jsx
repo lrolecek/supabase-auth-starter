@@ -35,7 +35,7 @@ const Header = () => {
 					<div className='m-1 c-white d-flex flex-rows'>
 						<h1 className='my-auto'>Magic Deck Builder</h1>
 						<div className='my-auto ms-auto me-1'>
-						{auth && <div><span className='me-1'>{user.email}</span><button onClick={empty} className='btn btn-primary'>Odhlasit se</button></div>}
+						{auth && <div><span className='me-1'>{user.email}</span><button onClick={empty} className='btn btn-primary'>Logout</button></div>}
 						</div>
 						
 						</div>
@@ -45,8 +45,7 @@ const Header = () => {
 							<Link to="/">Decks</Link><span> | </span>   
 							<Link to="/editions">Editions</Link><span> | </span>  
 							<Link to="/deckbuilder">Deck Builder</Link><span> | </span>  
-							<Link to="/about">About</Link><span> | </span>  
-							<Link to="/contacts">Contacts</Link><span> | </span>  
+							<Link to="/about">About</Link><span> | </span>   
 							<Link to="/login">Login</Link><span> | </span>  
 							<Link to="/register">Register</Link>  
 							

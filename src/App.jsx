@@ -11,7 +11,7 @@ import DeckBuilder from './components/DeckBuilder'
 import About from './components/About'
 import Header from './components/Header'
 
-import Contacts from './components/Contacts'
+//import Contacts from './components/Contacts'
 
 import Login from './components/Login'
 import Register from './components/Register'
@@ -38,7 +38,7 @@ function App() {
 
               </Route>
 
-                <Route path="/contacts" element={<Contacts />} />
+               
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
