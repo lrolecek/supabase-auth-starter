@@ -54,7 +54,7 @@ const Item = ({ id, name, url, index, from, moveItem, handleRemoveClick }) => {
           <img src={url} className='magic p-0' />
           
         {/* {id + 1} {name} {url} */}
-        <div className='card-x position-absolute w-100' ref={dragRef} style={{cursor: 'move', opacity: isDragging ? 0.1 : 1}} >
+        <div className='card-x position-absolute w-100' /* ref={dragRef} style={{cursor: 'move', opacity: isDragging ? 0.1 : 1}} */ >
   
         </div>
         <div className='x text-center d-flex justify-content-center align-item-center' onClick={() => {handleRemoveClick(index); setCardPreview()}}>x</div>
