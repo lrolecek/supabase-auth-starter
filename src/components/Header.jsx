@@ -46,8 +46,8 @@ const Header = () => {
 							<Link to="/editions">Editions</Link><span> | </span>  
 							<Link to="/deckbuilder">Deck Builder</Link><span> | </span>  
 							<Link to="/about">About</Link><span> | </span>   
-							<Link to="/login">Login</Link><span> | </span>  
-							<Link to="/register">Register</Link>  
+							<Link to="/login">Login</Link>{/* <span> | </span> */}  
+							{/* <Link to="/register">Register</Link> */}  
 							
 							</nav>
 							
