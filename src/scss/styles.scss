@@ -1,0 +1,227 @@
+#root{
+    height: calc(100vh - 4rem)
+}
+
+.bg-gray{
+    background-color: #212529;
+}
+.c-white{
+    color:aliceblue
+}
+
+.form-control.border{
+    border: solid 1px gray !important
+}
+
+nav{
+    a{color: navy;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+    }
+
+}
+
+.loading{
+    height: 200px;
+    width: 100%;
+    background: url(".././assets/loading.gif");
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 1rem;
+}
+
+body{
+    background-image: url(".././assets/back.jpg");
+    background-size: cover;
+    /* section{
+        height: 100vh;
+    } */
+    .container-fluid{
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: saturate(180%) blur(10px);
+        border-radius: 1rem;
+        max-width: 1600px;
+        height: 100%;
+        
+    }
+    #app{
+        .corners{
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+    }
+
+    $border-radius: .6rem;
+
+    img.icon{
+        height: 80px
+    }
+    #home{
+        .deck-box{
+            border: solid 1px gray;
+            border-radius: $border-radius;
+            height: 8rem;
+        }
+        img.deck{
+            height: 5rem;
+            cursor: pointer;
+        }
+        a{color: navy;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        .delete{
+            color: navy;
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    #preview{
+        img.magic{
+            width: 100%;
+            border-radius: $border-radius;
+        }
+    }
+    #deckbuilder{
+        .card-section{
+            border: solid 1px black;
+            overflow-y: auto;
+            border-radius: $border-radius;
+        }
+        .item{
+            cursor: pointer;
+            &:hover{
+            div{
+                text-decoration: underline;
+            }}
+        }
+        img.magic{
+            width: 100px;
+            border-radius: .3rem;
+            //cursor: move;
+            transition: scale .3s;
+        }
+        img.magic:hover{
+            transform: scale(1.5);
+        }
+        .mana{
+            display: inline-block;
+            width: 1rem;
+        }
+    }
+
+    #editions{
+        .edition{
+            height: 3rem;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        .icon{
+            width: 2rem
+        }
+        .container-lg{
+            border: solid 1px black;
+            overflow-y: auto;
+            border-radius: $border-radius;
+        }
+        .form-select.border{
+            border: solid 1px black!important;
+        }
+    }
+
+    #workon{
+        img.magic{
+            width: 12.5rem;
+            border-radius: $border-radius;
+        }
+        .cards{
+            position: relative;
+        }
+        .creatures{
+            margin-left: 13rem;
+        }
+        .card-box{
+            position: absolute;
+            border-radius: $border-radius;
+            animation: show .5s normal;
+        }
+        .deleted{
+            animation:  show .2s reverse;
+        }
+
+        @keyframes show {
+            0%   {opacity: 0;}
+            100% {opacity: 1}
+        }
+        
+         
+        
+        .full{
+            border-radius: $border-radius;
+            .card-x{
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 2rem;
+                border: solid 1px transparent;
+                border-radius: $border-radius;
+            }
+            .x{
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-top-right-radius: $border-radius;
+                border-bottom-left-radius: $border-radius;
+                color: transparent;
+                cursor: pointer;
+                
+            }
+        }
+        .full:hover{
+            .x{
+                color: white;
+                background: black;
+                
+            }
+        }
+        .input-group{
+            width: 12rem;
+            .form-control.border {
+                border: solid 0px gray !important;
+                background: transparent;
+                font-weight: bold;
+                font-size: 18px;   
+            }
+            .form-control:focus{
+                border: solid 1px gray !important;
+                outline: none;
+            }
+        }
+        
+    }
+    
+    .dragable{
+        top: 0
+    }
+}
+
+
+@media all and (max-width: 1600px) {
+    html {
+      font-size: 80%;
+    }
+  }

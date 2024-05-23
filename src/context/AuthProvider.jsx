@@ -1,6 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
+//import {MyContext} from './../context/MyContext'
+
+
 import {supabase} from './../supabase/client'
+
+//const { deck, setDeck} = useContext(MyContext)
+
 
 
 const AuthContext = createContext(null);
@@ -12,10 +18,12 @@ const register = async (email, password) => {
 }
 
 const login = async (email, password) => {
+  //setDeck(false)
   return supabase.auth.signInWithPassword({ email, password });
 }
 
 const logout = async () => {
+
   return supabase.auth.signOut();
 }
 
