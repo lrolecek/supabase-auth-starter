@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import {supabase} from './../supabase/supabase-client'
+
 export function Register() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -7,14 +9,45 @@ export function Register() {
 	const [lastName, setLastName] = useState('')
 	const [age, setAge] = useState('')
 
-	const handleSubmit = (e) =>{
+	const [message, setMessage] = useState(null)
+
+	const handleSubmit = async (e) =>{
 		e.preventDefault()
-		console.log('Registruji...', email, password, firstName, lastName, age)
+
+		setMessage(null)
+
+		if (email === '' || password === '') {
+			return
+		}
+
+		const { data, error } = await supabase.auth.signUp({
+			email,
+			password,
+			options: {
+				data: {
+					firstName,
+					lastName,
+					age,
+				}
+			}
+		});
+
+		if (!error && data) {
+			setMessage("Registration Successful. Check your email to confirm your account");
+			console.log(data)
+		}
+
+		if (error) {
+			console.log(error)
+		}
+
 	}
 
 	return (
 		<>
 			<h2>Registrace</h2>
+
+			{message && <p>{message}</p>}
 
 			<form onSubmit={handleSubmit}>
 

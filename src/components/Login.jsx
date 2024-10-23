@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
 
+import {supabase} from '../supabase/supabase-client'
+
 export const Login = () => {
 
 	const [email, setEmail] = useState('')
@@ -9,6 +11,16 @@ export const Login = () => {
 	const handleSubmit = async (e) =>{
 		e.preventDefault()
 		console.log('Prihlasuji...', email, password)
+
+		const {data, error} = await supabase.auth.signInWithPassword({ email, password });
+
+		if (!error && data) {
+			console.log(data)
+		}
+
+		if (error) {
+			console.log(error)
+		}
 	}
 
 	return (
