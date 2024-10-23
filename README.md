@@ -1,5 +1,15 @@
 # Supabase + Auth
 
+## Environmentální proměnné
+
+Adresu databáze a API klíč nechceme mít nikdy uvedenou v kódu. V kořenové složce projektu si vytvoříme soubor `.env.local`. Ten je přidaný do `.gitignore`, takže se nikdy nepošle do Gitu/GitHubu.
+
+Abychom se na proměnné mohli odkazovat ve front-end kódu, musí začínat na `VITE_`. Takže náš soubor bude obsahovat třeba:
+```
+VITE_SUPABASE_DB_URL=https://project.supabase.co
+VITE_SUPABASE_API_KEY=abc123456
+```
+
 ## Připojení k databázi v Reactu
 
 Přidáme do projektu  balíček Supabase.
@@ -7,13 +17,19 @@ Přidáme do projektu  balíček Supabase.
 npm install @supabase/supabase-js
 ```
 
-Potom v kódu:
+
+### Vytvoříme si soubor s databázovým klientem
+
+Soubor `supabase/supabase-client.js`
+
 ```jsx
 import { createClient } from "@supabase/supabase-js";
-const supabase = createClient("https://<project>.supabase.co", "<your-anon-key>");
-```
 
-Proměnnou `supabase` pak používáme k veškeré komunikaci s databází.
+export const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_DB_URL,
+  import.meta.env.VITE_SUPABASE_API_KEY
+);
+```
 
 ## Základní příklad s hotovou login komponentou
 
@@ -22,19 +38,6 @@ https://supabase.com/docs/guides/auth/quickstarts/react
 
 My si ale naprogramujeme vlastní.
 
-
-## Soubor s klientem
-
-Soubor `supabase/client.js`
-
-```jsx
-import { createClient } from "@supabase/supabase-js";
-
-const projectURL = import.meta.env.VITE_SUPABASE_PROJECT_URL;
-const projectKey = import.meta.env.VITE_SUPABASE_PROJECT_KEY;
-
-export const supabase = createClient(projectURL, projectKey);
-```
 
 ## Vytvoříme si context a AuthProvider
 
@@ -47,10 +50,14 @@ import { createContext, useContext, useState } from "react";
 
 // context
 const AuthContext = createContext({});
+
+// hook pro používání kontextu
 export const useAuth = () => useContext(AuthContext);
 
 // provider komponenta
 const AuthProvider = ({ children }) => {
+
+  // stav, který bude uchovávat informaci o uživateli
   const [user, setUser] = useState(null);
 
   return (
@@ -74,7 +81,16 @@ V komponentě pro registraci `components/Register.jsx`
 
 ```jsx
 try {
-  const { data, error } = await supabase.auth.signUp({ email, password });
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        firstName: 'Karel',
+        age: 23,
+      }
+    }
+  });
 
   if (!error && data) {
     setMsg("Registration Successful. Check your email to confirm your account");
@@ -196,21 +212,10 @@ V souboru `main.jsx`
 <React.StrictMode>
   <BrowserRouter>
     <AuthProvider>
-      <App />
+      ...
     </AuthProvider>
   </BrowserRouter>
 </React.StrictMode>
-```
-
-V `App.jsx` přidáme jednotlivé stránky (routes):
-
-```jsx
-<Routes>
-  <Route path="/" element={<Home />} />
-  <Route path="/about" element={<About />} />
-  <Route path="/register" element={<Register />} />
-  <Route path="/login" element={<Login />} />
-</Routes>
 ```
 
 ## Stránky jen pro přihlášené uživatele
@@ -241,13 +246,16 @@ Cesty, které chceme mít jen pro přihlášené, zabalíme do této komponenty.
 
 ```jsx
 <Routes>
-  <Route element={<AuthRoute />}>
-    <Route path="/" element={<Home />} />
-    <Route path="/about" element={<About />} />
+  <Route path="/" element={<App />}>
+    <Route index element={<Home />} />
+    <Route path="about" element={<About />} />
+    <Route element={<AuthRoute />}>
+      <Route path="secret" element={<Secret />} />
+    </Route>
+    <Route path="register" element={<Register />} />
+    <Route path="login" element={<Login />} />
   </Route>
-  <Route path="/register" element={<Register />} />
-  <Route path="/login" element={<Login />} />
-</Routes>
+ </Routes>
 ```
 
 ## Reset / změna hesla

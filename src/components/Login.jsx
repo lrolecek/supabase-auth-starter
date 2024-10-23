@@ -1,35 +1,46 @@
-import {useAuth} from '../context/AuthProvider'
-
-import {useNavigate} from 'react-router-dom'
+import {useState} from 'react'
+import {Link} from 'react-router-dom'
 
 export const Login = () => {
-	const {login} = useAuth()
-	const navigate = useNavigate()
 
-	const handleClick = async () =>{
-		try {
-			const {data, error} = await login('EMAIL', 'HESLO');
-			if (error) {
-				console.log(error)
-			}
-			if (data.user && data.session) {
-				// console.log('prihlaseny', data.user)
-				// prihlaseneho uzivatele presmerujeme na home
-				navigate('/')
-			}
-		}
-		catch (error) {
-			console.log(error)
-		}
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
 
+	const handleSubmit = async (e) =>{
+		e.preventDefault()
+		console.log('Prihlasuji...', email, password)
 	}
 
 	return (
 		<>
-			<h2>Login</h2>
-			<button onClick={handleClick}>Prihlasit se</button>
+			<h2>Přihlášení</h2>
+
+			<form onSubmit={handleSubmit}>
+
+				<div className="form-field">
+					<label>E-mail</label>
+					<input
+						type="email"
+						value={email}
+						onChange={e => setEmail(e.target.value)}
+					/>
+				</div>
+
+				<div className="form-field">
+					<label>Password</label>
+					<input
+						type="password"
+						value={password}
+						onChange={e => setPassword(e.target.value)}
+					/>
+				</div>
+
+				<button type="submit">Přihlásit se</button>
+
+				<p>Ještě nemáš účet? <Link to="/register">Zaregistruj se.</Link></p>
+			</form>
 		</>
 	)
 }
 
-export default Login;
+export default Login

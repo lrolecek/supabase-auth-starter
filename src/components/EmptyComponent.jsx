@@ -1,4 +1,4 @@
-const EmptyComponent = () => {
+export function EmptyComponent() {
 	return (
 		<div style={{border: '5px solid blue', margin: '1em', padding: '1em'}}>
 			<p>Component</p>

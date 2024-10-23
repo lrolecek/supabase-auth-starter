@@ -1,15 +1,10 @@
-import {useAuth} from './../context/AuthProvider'
-
-
-const Home = () => {
-	const {auth, user, logout} = useAuth()
+export function Home() {
 
 	return (
 		<>
-			<h2>Home</h2>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam provident iusto deleniti nulla nihil quasi quae pariatur, architecto hic aspernatur.</p>
+			<h2>Úvod / Homepage</h2>
 
-			<button onClick={()=>{ logout()  }}>Odhlasit se</button>
+			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam provident iusto deleniti nulla nihil quasi quae pariatur, architecto hic aspernatur.</p>
 		</>
 	);
 }

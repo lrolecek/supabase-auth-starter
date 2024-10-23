@@ -1,38 +1,30 @@
-import {Routes, Route, Link} from 'react-router-dom'
+import './App.css'
 
+import {NavLink, Outlet} from 'react-router-dom'
 
-import AuthRoute from './components/AuthRoute'
-
-import Home from './components/Home'
-import About from './components/About'
-import Contacts from './components/Contacts'
-import Login from './components/Login'
-import Register from './components/Register'
-
+import UserStatus from './components/UserStatus'
 function App() {
-
-
   return (
     <>
       <h1>Supabase + Auth + Router</h1>
 
-      <nav>
-        <Link to="/">Home</Link> |
-        <Link to="/about">About</Link> |
-        <Link to="/contacts">Contacts</Link> |
-        <Link to="/login">Login</Link> |
-        <Link to="/register">Register</Link> |
-      </nav>
+      <header className="header">
+        <nav className="menu">
+          <NavLink to="/">Domů</NavLink>
+          <NavLink to="/about">O nás</NavLink>
+          <NavLink to="/secret">Tajemství</NavLink>
+          <NavLink to="/login">Přihlášení</NavLink>
+          <NavLink to="/register">Registrace</NavLink>
+        </nav>
 
-      <Routes>
-        <Route element={<AuthRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Route>
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+        <UserStatus />
+      </header>
+
+      <main className="main">
+
+        <Outlet />
+
+      </main>
 
     </>
   )

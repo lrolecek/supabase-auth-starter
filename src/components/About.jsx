@@ -1,8 +1,8 @@
-const About = () => {
+export function About() {
 
 	return (
 		<>
-			<h2>About</h2>
+			<h2>O nás</h2>
 
 			<ul>
 				<li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
