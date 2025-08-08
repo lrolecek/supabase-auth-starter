@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
 import './index.css'
 
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router'
 
 import {AuthProvider} from './context/AuthContext'
 
@@ -13,8 +13,8 @@ import Secret from './components/Secret'
 import Login from './components/Login'
 import Register from './components/Register'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-  </React.StrictMode>,
+  </StrictMode>,
 )

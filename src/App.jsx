@@ -1,6 +1,6 @@
 import './App.css'
 
-import {NavLink, Outlet} from 'react-router-dom'
+import {NavLink, Outlet} from 'react-router'
 
 import UserStatus from './components/UserStatus'
 function App() {
